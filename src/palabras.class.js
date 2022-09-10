@@ -1,12 +1,11 @@
-import { filtrarNumeros } from "./utils.js";
+import { onlyText } from "./utils.js";
 // @ts-check
 class Palabras {
   palabras = [];
 
   constructor(palabras) {
     if (!palabras) throw Error("Necesitamos el array de palabras!");
-    const newPalabras = palabras.map((w) => filtrarNumeros(w)); // filtrado de numeros
-    this.palabras = newPalabras.map((w) => w.toUpperCase()); // pasar a mayusculas
+    this.palabras = palabras.map(w=> onlyText(w))
   }
 
   getWords() {
@@ -14,8 +13,8 @@ class Palabras {
   }
 
   addWord(word) {
-    const newWord = filtrarNumeros(word)
-    this.palabras.push(newWord.toUpperCase());
+    const wordFiltered = onlyText(word)
+    this.palabras.push(wordFiltered);
   }
 
   print() {
